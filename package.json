@@ -1,0 +1,33 @@
+{
+  "name": "roombossautomation",
+  "version": "1.0.0",
+  "description": "Roomboss Interview Process Automation",
+  "main": "index.js",
+  "scripts": {
+    "test:listingPage:Chrome": "npx playwright test --config=config/playwright.listing.config.ts --project=Chrome",
+    "test:listingPage:Firefox": "npx playwright test --config=config/playwright.listing.config.ts --project=Firefox",
+    "test:listingPage:Webkit": "npx playwright test --config=config/playwright.listing.config.ts --project=WebKit",
+    "test:api": "npx playwright test --config=config/playwright.api.config.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iznomau5/roombossAutomation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/iznomau5/roombossAutomation/issues"
+  },
+  "homepage": "https://github.com/iznomau5/roombossAutomation#readme",
+  "dependencies": {
+    "@playwright/test": "^1.52.0",
+    "ajv": "^8.17.1",
+    "axios": "^1.9.0",
+    "axios-mock-adapter": "^2.1.0",
+    "jsonpath": "^1.1.1",
+    "k6": "^0.0.0",
+    "playwright": "^1.52.0"
+  }
+}

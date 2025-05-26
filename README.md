@@ -1,2 +1,6 @@
 # roombossAutomation
-Roomboss Interview Process Automation
+
+
+Key Observations
+- 
+

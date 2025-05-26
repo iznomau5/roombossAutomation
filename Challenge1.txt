@@ -1,0 +1,49 @@
+1. Plan out a strategy for the full QA lifecycle – from Dev to Release – for this search page,
+including a brief, high-level description of each phase and its purpose.
+● View the search page as a new product, still in development, with no existing tests.
+● Cover only the search page; you do not need to consider the search/listing page that is
+accessed by clicking “More Info” on a Property search result.
+
+
+
+// ADD RISKS and Multiple Browser Verification
+
+
+
+
+QA lifecycle for the "Search-Page" is as follows
+
+1. Requirement Analysis & Clarifications
+- Understand what the feature should do from both functional and user perspectives.
+- Clarify expected behaviors: property availability logic, guest filtering, rate calculations, etc.
+- Also, understanding the dependecies. Flow of data from APIs and Databases and Vendors
+- This gives us a QA checklist to look at before proving QA Sign-off before PROD release
+
+2. Test Planning
+- Look at Unit test coverage (%) -> Leave it to devs to manage
+- With the understanding gained define scope and type of testing to be done (UI, API, Performance, etc.)
+- Either asking for or creating postman collection to test out the API manually before automating (As all the data is coming through APIs as checked in Network tab)
+
+3. Test Design
+- We start with Happy path (The ideal path to use the portal which majority of customers would be using. This is highest priority path which SHOULD work at all times)
+- Negative scenarios (APIs) -> URL manipulation (In this case)
+- Data validation -> Description for available property with the API endpoint that's been called in the background
+- Document the tests with test steps in the tool (Azure DevOps, Jira, etc)
+
+4. Manual Test and Automation Scripting along with Defect Lifecycle
+- Manually test the identified tests
+- Automate the automation-eligible tests 
+- Log defects found with STR details, Make sure bugs are closed with RCA.
+- Ensure automation tests are part of the deployment process (CI/CD or a Build Pipeline)
+
+5. Release check-list, Sign-off 
+- Verify all identified bugs are closed and status updated in the tool (Azure DevOps, Jira, etc.)
+- Ensure automation tests are passing in QA or Pre-PROD ENV
+- Ensure no bugs found with one round of manual exploratory testing (Random test which do not follow the checklist or the documented tests)
+- Provide QA sign-off for release (also provide automation test report along with bug report)
+
+6. Post deployment Monitoring Support 
+- Verify Automation tests are passing for PROD ENV
+- Verify no bugs found by one round of manual exploratory testing
+- Monitor application logs for unusual errors (AppInsight, DataDog, etc.)
+
