@@ -18,5 +18,5 @@ API Testing
 
 Performance Tests
 - Tech Used -> K6.io
-- Facing some challenge with k6 installation as k6-browser is experimental stage at the moment
+- Issue with K6 is now resolved.
 
