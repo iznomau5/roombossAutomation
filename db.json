@@ -1,0 +1,43 @@
+{
+      "apiVersion": "1.1",
+      "success": true,
+      "failureMessage": null,
+      "posId": "8a80818a8820776501882cbdaa863a82",
+      "locale": "en",
+      "hotels": [
+          {
+              "hotelId": "8a80818a8820776501882cbfb13c3aa3",
+              "hotelName": "Demo Condominium2",
+              "hotelDescription": "RESIDENCE WITH BEAUTIFUL MOUNTAIN VIEW! Make the greatest choice for your holidays by staying in our residence Demo Condominium. In a privileged environment, you will be able to enjoy a high level of comfort in our fully equipped 45 sqm apartment. East facing. Included services: sheets and towels, final cleaning and a garage space. WIFI.",
+              "roomTypes": [
+                  {
+                      "roomTypeId": "8a80818a8820776501882cbfb13c3aa4",
+                      "roomTypeName": "Studio",
+                      "roomTypeDescription": "Cosy studio with a good atmosphere.Living-room with TV and balcony facing NORTH-EAST, MOUNTAIN view.Fully-equipped and open-plan kitchen on dining-room with ceramic hob, multi-function oven, dishwasher, refrigerator, toaster, electric kettle, filter coffee machine.3 Bedroom.1 Bathroom with dry towel and toilets.\n"
+                  },
+                  {
+                      "roomTypeId": "8a80818a8820776501882cc3a4c73ae2",
+                      "roomTypeName": "Two Bedroom",
+                      "roomTypeDescription": "Cosy studio with a good atmosphere.Living-room with TV and balcony facing NORTH-EAST, MOUNTAIN view.a small kitchen on dining-room with ceramic hob, multi-function oven, dishwasher, refrigerator, toaster, electric kettle, filter coffee machine.2 Bedroom.1 Bathroom with dry towel and toilets.\n"
+                  }
+              ]
+          },
+          {
+              "hotelId": "8a80818a8820776501882cc00c2c3ab4",
+              "hotelName": "Demo Hotel Lodge2",
+              "hotelDescription": "RESIDENCE WITH A BEAUTIFUL VIEW makes the greatest choice for your holidays by staying in our Lodge. In a privileged environment, you will be able to enjoy a high level of comfort in our fully equipped 106 sqm apartment for 8 guests with an outstanding panoramic view on the mountain. West facing. Included services: sheets and towels, final cleaning and a garage space. WIFI.\n",
+              "roomTypes": [
+                  {
+                      "roomTypeId": "8a80818a8820776501882cc5a64b3dbd",
+                      "roomTypeName": "Quad Room",
+                      "roomTypeDescription": "Cosy studio with a good atmosphere.Living-room with TV and balcony facing SOUTH-EAST, MOUNTAIN view.Fully-equipped and open-plan kitchen on dining-room with ceramic hob, multi-function oven, dishwasher, refrigerator, toaster, electric kettle, filter coffee machine. 2 Bedroom for 4 people.1 Bathroom with dry towel and toilets.\n"
+                  },
+                  {
+                      "roomTypeId": "8a80818a8820776501882cc00c2d3ab5",
+                      "roomTypeName": "Double Room",
+                      "roomTypeDescription": "Cosy studio with a good atmosphere.Living-room with TV and balcony facing SOUTH-EAST, MOUNTAIN view.a small kitchen on dining-room with ceramic hob, multi-function oven, dishwasher, refrigerator, toaster, electric kettle, filter coffee machine. A double Bedroom. 1 Bathroom with dry towel and toilets.\n"
+                  }
+              ]
+          }
+      ]
+}

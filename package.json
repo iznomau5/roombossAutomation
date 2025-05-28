@@ -7,7 +7,12 @@
     "test:listingPage:Chrome": "npx playwright test --config=config/playwright.listing.config.ts --project=Chrome",
     "test:listingPage:Firefox": "npx playwright test --config=config/playwright.listing.config.ts --project=Firefox",
     "test:listingPage:Webkit": "npx playwright test --config=config/playwright.listing.config.ts --project=WebKit",
-    "test:api": "npx playwright test --config=config/playwright.api.config.ts"
+    "test:listingPagePixelMatch:Chrome": "npx playwright test --config=config/playwright.listingPixel.config.ts --project=Chrome",
+    "test:listingPagePixelMatch:Firefox": "npx playwright test --config=config/playwright.listingPixel.config.ts --project=Firefox",
+    "test:listingPagePixelMatch:Webkit": "npx playwright test --config=config/playwright.listingPixel.config.ts --project=WebKit",
+    "test:api": "npx playwright test --config=config/playwright.api.config.ts",
+    "startMockPerf": "json-server --watch db.json --port 3000",
+    "k6:api": "k6 run tests/Performance/getHotelsByLocation.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +31,7 @@
     "ajv": "^8.17.1",
     "axios": "^1.9.0",
     "axios-mock-adapter": "^2.1.0",
+    "json-server": "^1.0.0-beta.3",
     "jsonpath": "^1.1.1",
     "k6": "^0.0.0",
     "playwright": "^1.52.0"
