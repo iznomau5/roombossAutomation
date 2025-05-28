@@ -1,0 +1,49 @@
+UI Tests
+- Verify working Listing using widget
+- Verify Listing when both demo hotels are available
+- Verify Listing when one hotel is booked
+- Verify Listing when one hotel is partially booked
+- Manipulate URL to change listing page details for Negative scenarios
+- Verify Default values with URL manipulation 
+
+
+
+UI Pixel Matching
+- Verify correct map placement for the properties
+
+
+API Tests
+- Verify Schema, Status Code, Status Message
+- Data Validation (Hard-coded for now)
+
+
+Performance Tests
+- Baseline
+- N req/min constant
+- Ramping load
+
+*****************
+
+UI tests
+- Successful transfer from listing to room select
+- ⁠Default value check
+- ⁠Default value check for negative scenario (Invalid dates, formats, missing info)
+- ⁠Validate available property from API
+- ⁠Validate property description 
+- ⁠Validate other data from API
+
+No results page 
+- no date in URL (not working now)
+- ⁠zero parameters
+
+No search location error message when location parameter is missing
+Partial booked scenario -> Both start and end date one by one in booked period
+Demo condominium supports 16 PAX -> should not show up when searching for 17 PAX
+
+*****************
+
+Potential Bugs Found
+Demo Hotel Louge allows us to select or add to cart rooms for 24 PAX when the max search limit is 20
+Country should be auto populated as we already know the customer country because we’re proving the phone code automatically
+Site logo should be clickable and should redirect to home page (in this case listing page)
+Entering street view and then clicking on “click to see on map” doesn’t bring up the property on the map

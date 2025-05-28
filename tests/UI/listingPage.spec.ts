@@ -8,6 +8,51 @@ import { parseYenPrice } from '../../utility/util.ts'
 
 test.describe.parallel('Listing Page with URL Manipulation', () => {
 
+  test('Listing Search Niseko - June (One Property is Booked)', async ({ page }) => {
+    const listingPage = new ListingPage(page)
+    await listingPage.gotoListing({location : 'niseko', startDate: '20250609', nights: '2', guests:'2'})
+    await listingPage.checkPrivacyPopup()
+    expect(await listingPage.getPropertyCount()).toBe(1)
+  })
+
+  test('Listing Search Niseko - July (Both Properties are Available)', async ({ page }) => {
+    const listingPage = new ListingPage(page)
+    await listingPage.gotoListing({location : 'niseko', startDate: '20250715', nights: '7', guests:'5'})
+    await listingPage.checkPrivacyPopup()
+    expect(await listingPage.getPropertyCount()).toBe(2)
+  })
+
+  test('Verify July Prices are Higher Than June Prices', async ({page}) => {
+    const listingPage = new ListingPage(page)
+    await listingPage.gotoListing({location : 'niseko', startDate: '20250615', nights: '3', guests:'3'})
+    let propertyPriceJune = await listingPage.getPropertyPrices()
+    await listingPage.gotoListing({location : 'niseko', startDate: '20250715', nights: '3', guests:'3'})
+    let propertyPriceJuly = await listingPage.getPropertyPrices()
+
+    const junePricesParsed = propertyPriceJune.map(parseYenPrice)
+    const julyPricesParsed = propertyPriceJuly.map(parseYenPrice)
+
+    for (let i = 0; i < junePricesParsed.length; i++) {
+      expect(junePricesParsed[i]).toBeLessThan(julyPricesParsed[i])
+    }
+  })
+
+  test('Verify "No Search Location" error message /w zero parameters', async ({page}) => {
+    const listingPage = new ListingPage(page)
+    await listingPage.gotoListing()
+    expect(await listingPage.verifyNoSearchLocationPopup()).toBe('No Search Location')
+  })
+
+  test('Verify Default Value for Nights', async ({page}) => {
+    const listingPage = new ListingPage(page)
+    await listingPage.gotoListing({location : 'niseko', startDate: '20250620', guests:'5'})
+    expect(await listingPage.getGuestCountFromWidget()).toBe('2')
+  })
+})
+
+
+test.describe.parallel('Listing Page Data Validation with APIs', () => {
+
   let mock: MockAdapter
   let response
 
@@ -61,23 +106,9 @@ test.describe.parallel('Listing Page with URL Manipulation', () => {
       response = await apiClient.get('https://accomdemo2.evoke.jp/extws/widget/hotel/v1/listDescription?locale=en&hotelId=8a80818a8820776501882cbfb13c3aa3&hotelId=8a80818a8820776501882cc00c2c3ab4')
     })
 
-  test('Listing Search Niseko - June (One Property is Booked)', async ({ page }) => {
-    const listingPage = new ListingPage(page)
-    await listingPage.gotoListing('niseko', 3, '20250610', 3)
-    await listingPage.checkPrivacyPopup()
-    expect(await listingPage.getPropertyCount()).toBe(1)
-  })
-
-  test('Listing Search Niseko - July (Both Properties are Available)', async ({ page }) => {
-    const listingPage = new ListingPage(page)
-    await listingPage.gotoListing('niseko', 7, '20250715', 5)
-    await listingPage.checkPrivacyPopup()
-    expect(await listingPage.getPropertyCount()).toBe(2)
-  })
-
   test('Verify Description of Available Properties /w API Fetching Data', async ({page}) => {
     const listingPage = new ListingPage(page)
-    await listingPage.gotoListing('niseko', 7, '20250715', 5)
+    await listingPage.gotoListing({location : 'niseko', startDate: '20250715', nights: '7', guests:'5'})
     await listingPage.checkPrivacyPopup()
     const propertyNames = await listingPage.getPropertyNames()
     const propertyDescription = await listingPage.getPropertyDescription()
@@ -92,48 +123,5 @@ test.describe.parallel('Listing Page with URL Manipulation', () => {
     const propertyDescriptionAPINormalized = normalize(propertyDescriptionAPI)
     expect(propertyDescriptionNormalized).toEqual(propertyDescriptionAPINormalized)
 
-  })
-
-  test('Verify July Prices are Higher Than June Prices', async ({page}) => {
-    const listingPage = new ListingPage(page)
-    await listingPage.gotoListing('niseko', 3, '20250620', 3)
-    let propertyPriceJune = await listingPage.getPropertyPrices()
-    await listingPage.gotoListing('niseko', 3, '20250710', 3)
-    let propertyPriceJuly = await listingPage.getPropertyPrices()
-
-    const junePricesParsed = propertyPriceJune.map(parseYenPrice)
-    const julyPricesParsed = propertyPriceJuly.map(parseYenPrice)
-
-    for (let i = 0; i < junePricesParsed.length; i++) {
-      expect(junePricesParsed[i]).toBeLessThan(julyPricesParsed[i])
-    }
-  })
-})
-
-test.describe.parallel('Pixel Matching Hotel Location On Map', () => {
-
-  test('Listing Search Niseko - 1st June (Happy Path)', async ({ page }) => {
-  const listingPage = new ListingPage(page)
-  await listingPage.gotoListing('niseko', 3, '20250601', 3)
-  
-  await page.getByText('Demo Condominium2').click()
-  
-  await page.waitForTimeout(3 * 1000)
-
-  const heroSection = page.locator('//div[@class="gm-style"]/div/div[2]')
-  expect(await heroSection.screenshot()).toMatchSnapshot('DemoCondominium2.png', { maxDiffPixelRatio: 0.05 })
-  })
-
-  test('Listing Search Niseko - 1st June (Error Path - Bound to Fail)', async ({ page }) => {
-  const listingPage = new ListingPage(page)
-  await listingPage.gotoListing('niseko', 3, '20250601', 3)
-  
-  //await page.getByText('Demo Hotel Lodge2').click()
-  await page.getByText('Demo Condominium2').click()
-  
-  await page.waitForTimeout(3 * 1000)
-
-  const heroSection = page.locator('//div[@class="gm-style"]/div/div[2]')
-  expect(await heroSection.screenshot()).toMatchSnapshot('DemoHotelLodge2.png', { maxDiffPixelRatio: 0.05 })
   })
 })

@@ -1,7 +1,7 @@
 import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
-  testDir: '../tests/UI',
+  testDir: '../tests/PixelMatching',
   timeout: 30 * 1000,
   retries: 0,
   use: {
@@ -26,7 +26,7 @@ export default defineConfig({
       },
     },
     {
-      name: 'WebKit',
+      name: 'Webkit',
       use: {
         browserName: 'webkit',
       },
